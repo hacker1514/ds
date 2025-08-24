@@ -1,168 +1,150 @@
 <!DOCTYPE html>
 <html>
-        <head>
-                <title>NIRANJAN CREATIONS</title>
-                <link rel="manifest" href="ds.json">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-        </head>
-<style>
-.rotate{
-        animation:spin 2s linear infinite;
-}
-@keyframes spin{
-        0%{
-                transform: rotateY(0deg);
+<head>
+    <title>NIRANJAN CREATIONS</title>
+    <link rel="manifest" href="ds.json">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        .rotate { animation: spin 2s linear infinite; }
+        @keyframes spin {
+            0% { transform: rotateY(0deg); }
+            100% { transform: rotateY(360deg); }
         }
-        100%{
-                transform:rotateY(360deg);
-        }
-}
-</style>
-        <body style="background-color:navy;color:cyan;">
-                <marquee direction="right" behaviour="scroll" scrollamount="15" style="color:yellow;background-color:maroon;font-size:35px;">B-TREE CONSTRUCTION </marquee>
-                <center>
-                        <img src="https://hacker1514.github.io/python/kni.png" style="border-radius:50%;border:solid lime;" width=100px; height=100px; class=rotate>
-                </center>
-                <audio src="https://github.com/Niranjan164/COMPILER/raw/main/click-151673_073339.mp3" id="m"></audio>
-                <button onclick="ins()" style="color:lime;background-color:teal;font-size:25px;border:solid red;padding:0px 17px;" >INSERT</button> <span style="color:navy;">_</span>
-                <input type="text" id="insert" placeholder="Enter integer here!" style="color:white;background-color:black;font-size:25px;border:solid lime"></input>
-                <br></br>
-                <button onclick="del()" style="color:lime;background-color:teal;font-size:25px;border:solid red;padding: 0px 15px" >DELETE</button>   <span style="color:navy;">_</span>
-                <input type="text" id="delete" placeholder="Enter integer here!" style="color:white;background-color:black;font-size:25px;border:solid lime"></input>
-                <br></br>
-                <button onclick="save()" style="color:lime;background-color:teal;font-size:25px;border:solid red;padding:0px 30px;" >SAVE</button>
-                <span style="color:navy;">_</span>
-                <input type="text" id="filename" placeholder="Enter File name here!" style="color:white;background-color:black;font-size:25px;border:solid lime"></input>
-                <br></br>
-                <button  style="color:lime;background-color:teal;font-size:25px;border:solid red;padding:0px 20px;" >ORDER</button>
-                <span style="color:navy;">_</span>
-                <input id="order" type="text"  placeholder="Enter Order of B-Tree  here!" style="color:white;background-color:black;font-size:25px;border:solid lime"></input>
-                <br></br>
-                <button onclick="feedback()" style="color:lime;background-color:teal;font-size:25px;border:solid red;padding:0px 0px;" >FEEDBACK</button> <span style="color:navy;">_</span>
-                <button onclick="refresh()" style="color:lime;background-color:teal;font-size:25px;border:solid red;padding:0px 30px;" >REFRESH</button>
-                <span style="color:navy;">_.</span>                                      <button onclick="install()" style="color:lime;background-color:teal;font-size:25px;border:solid red;padding:0px 30px;" >INSTALL</button>
-                <br></br>
-                <center>
-                        <div style="color:lime;background-color:black;" id="tree" ></div>
-                </center>
-                <script>
+    </style>
+</head>
+<body style="background-color:navy;color:cyan;">
+    <marquee direction="right" behaviour="scroll" scrollamount="15"
+             style="color:yellow;background-color:maroon;font-size:35px;">
+        B-TREE CONSTRUCTION
+    </marquee>
+    <center>
+        <img src="https://hacker1514.github.io/python/kni.png"
+             style="border-radius:50%;border:solid lime;"
+             width=100px height=100px class="rotate">
+    </center>
+    <audio src="https://github.com/Niranjan164/COMPILER/raw/main/click-151673_073339.mp3" id="m"></audio>
+
+    <button onclick="ins()" style="color:lime;background-color:teal;font-size:25px;border:solid red;padding:0px 17px;">INSERT</button> <span style="color:navy">_</span>
+    <input type="text" id="insert" placeholder="Enter integer here!" style="color:white;background-color:black;font-size:25px;border:solid lime">
+
+    <br><br>
+    <button onclick="del()" style="color:lime;background-color:teal;font-size:25px;border:solid red;padding:0px 15px">DELETE</button>
+    <span style="color:navy">_</span>
+    <input type="text" id="delete" placeholder="Enter integer here!" style="color:white;background-color:black;font-size:25px;border:solid lime">
+
+    <br><br>
+    <button onclick="save()" style="color:lime;background-color:teal;font-size:25px;border:solid red;padding:0px 30px;">SAVE</button>
+    <span style="color:navy">_</span>
+    <input type="text" id="filename" placeholder="Enter File name here!" style="color:white;background-color:black;font-size:25px;border:solid lime">
+
+    <br><br>
+    <button style="color:lime;background-color:teal;font-size:25px;border:solid red;padding:0px 20px;">ORDER</button>
+    <span style="color:navy">_</span>
+    <input id="order" type="text" placeholder="Enter Order (m) of B-Tree"
+           style="color:white;background-color:black;font-size:25px;border:solid lime">
+
+    <br><br>
+    <button onclick="feedback()" style="color:lime;background-color:teal;font-size:25px;border:solid red;padding:0px 0px;">FEEDBACK</button>
+    <span style="color:navy">_</span>
+    <button onclick="refresh()" style="color:lime;background-color:teal;font-size:25px;border:solid red;padding:0px 30px;">REFRESH</button>
+    <span style="color:navy">_</span>
+    <button onclick="install()" style="color:lime;background-color:teal;font-size:25px;border:solid red;padding:0px 30px;">INSTALL</button>
+
+    <center>
+        <div style="color:lime;background-color:black;" id="tree"></div>
+    </center>
+
+<script>
 let music=document.getElementById("m");
-function refresh(){
-    music.play();
-    location.reload();
-}
-function feedback(){
-    music.play();
-    window.open("https://hacker1514.github.io/python/feedback.html","_self");
-}
-let p;
-window.addEventListener('beforeinstallprompt',e=>{
-    e.preventDefault();
-    p=e;
-});
-function install(){
-    music.play();
-    if(p){
-        p.prompt();
-    }
-}
-if('serviceWorker' in navigator){
-    navigator.serviceWorker.register('ds.js');
-}
+function refresh(){ music.play(); location.reload(); }
+function feedback(){ music.play(); window.open("https://hacker1514.github.io/python/feedback.html","_self"); }
+let p; window.addEventListener('beforeinstallprompt',e=>{ e.preventDefault(); p=e; });
+function install(){ music.play(); if(p){ p.prompt(); } }
+if('serviceWorker' in navigator){ navigator.serviceWorker.register('ds.js'); }
 
 class BTreeNode {
-    constructor(t, leaf=true) {
-        this.t = t;
+    constructor(m, leaf=true) {
+        this.m = m; // order
         this.leaf = leaf;
         this.keys = [];
         this.children = [];
         this.id = BTreeNode._nextId++;
     }
-
     findKey(k) {
-        let idx = 0;
-        while (idx < this.keys.length && this.keys[idx] < k) idx++;
+        let idx=0;
+        while(idx<this.keys.length && this.keys[idx]<k) idx++;
         return idx;
     }
-
     remove(k) {
-        let idx = this.findKey(k);
-        if (idx < this.keys.length && this.keys[idx] === k) {
-            if (this.leaf) {
-                this.keys.splice(idx, 1);
-            } else {
-                this.removeFromInternal(idx);
-            }
+        let idx=this.findKey(k);
+        if(idx<this.keys.length && this.keys[idx]===k){
+            if(this.leaf) this.keys.splice(idx,1);
+            else this.removeFromInternal(idx);
         } else {
-            if (this.leaf) return;
-            let flag = (idx === this.keys.length);
-            if (this.children[idx].keys.length < this.t) this.fill(idx);
-            if (flag && idx > this.keys.length) {
-                this.children[idx-1].remove(k);
-            } else {
-                this.children[idx].remove(k);
-            }
+            if(this.leaf) return;
+            let flag=(idx===this.keys.length);
+            let minKeys=Math.ceil(this.m/2)-1;
+            if(this.children[idx].keys.length<=minKeys) this.fill(idx);
+            if(flag && idx>this.keys.length) this.children[idx-1].remove(k);
+            else this.children[idx].remove(k);
         }
     }
-
-    removeFromInternal(idx) {
-        let k = this.keys[idx];
-        if (this.children[idx].keys.length >= this.t) {
-            let pred = this.getPredecessor(idx);
-            this.keys[idx] = pred;
+    removeFromInternal(idx){
+        let k=this.keys[idx];
+        let minKeys=Math.ceil(this.m/2)-1;
+        if(this.children[idx].keys.length>minKeys){
+            let pred=this.getPredecessor(idx);
+            this.keys[idx]=pred;
             this.children[idx].remove(pred);
-        } else if (this.children[idx+1].keys.length >= this.t) {
-            let succ = this.getSuccessor(idx);
-            this.keys[idx] = succ;
+        } else if(this.children[idx+1].keys.length>minKeys){
+            let succ=this.getSuccessor(idx);
+            this.keys[idx]=succ;
             this.children[idx+1].remove(succ);
         } else {
             this.merge(idx);
             this.children[idx].remove(k);
         }
     }
-
-    getPredecessor(idx) {
-        let cur = this.children[idx];
-        while (!cur.leaf) cur = cur.children[cur.keys.length];
+    getPredecessor(idx){
+        let cur=this.children[idx];
+        while(!cur.leaf) cur=cur.children[cur.keys.length];
         return cur.keys[cur.keys.length-1];
     }
-    getSuccessor(idx) {
-        let cur = this.children[idx+1];
-        while (!cur.leaf) cur = cur.children[0];
+    getSuccessor(idx){
+        let cur=this.children[idx+1];
+        while(!cur.leaf) cur=cur.children[0];
         return cur.keys[0];
     }
-
-    fill(idx) {
-        if (idx !== 0 && this.children[idx-1].keys.length >= this.t) {
-            this.borrowFromPrev(idx);
-        } else if (idx !== this.keys.length && this.children[idx+1].keys.length >= this.t) {
-            this.borrowFromNext(idx);
-        } else {
-            if (idx !== this.keys.length) this.merge(idx);
+    fill(idx){
+        let minKeys=Math.ceil(this.m/2)-1;
+        if(idx!==0 && this.children[idx-1].keys.length>minKeys) this.borrowFromPrev(idx);
+        else if(idx!==this.keys.length && this.children[idx+1].keys.length>minKeys) this.borrowFromNext(idx);
+        else {
+            if(idx!==this.keys.length) this.merge(idx);
             else this.merge(idx-1);
         }
     }
-    borrowFromPrev(idx) {
+    borrowFromPrev(idx){
         let child=this.children[idx];
         let sibling=this.children[idx-1];
         child.keys.unshift(this.keys[idx-1]);
-        if (!child.leaf) child.children.unshift(sibling.children.pop());
+        if(!child.leaf) child.children.unshift(sibling.children.pop());
         this.keys[idx-1]=sibling.keys.pop();
     }
-    borrowFromNext(idx) {
+    borrowFromNext(idx){
         let child=this.children[idx];
         let sibling=this.children[idx+1];
         child.keys.push(this.keys[idx]);
-        if (!child.leaf) child.children.push(sibling.children.shift());
+        if(!child.leaf) child.children.push(sibling.children.shift());
         this.keys[idx]=sibling.keys.shift();
     }
-    merge(idx) {
+    merge(idx){
         let child=this.children[idx];
         let sibling=this.children[idx+1];
         child.keys.push(this.keys[idx]);
         child.keys=child.keys.concat(sibling.keys);
-        if (!child.leaf) child.children=child.children.concat(sibling.children);
+        if(!child.leaf) child.children=child.children.concat(sibling.children);
         this.keys.splice(idx,1);
         this.children.splice(idx+1,1);
     }
@@ -170,238 +152,171 @@ class BTreeNode {
 BTreeNode._nextId=1;
 
 class BTree {
-    constructor(t) {
-        this.t = t;
-        this.root = new BTreeNode(t, true);
-    }
-
+    constructor(m){ this.m=m; this.root=new BTreeNode(m,true); }
     searchNode(node,k){
         let i=0;
-        while (i<node.keys.length && k>node.keys[i]) i++;
-        if (i<node.keys.length && node.keys[i]===k) return {node,idx:i};
-        if (node.leaf) return null;
+        while(i<node.keys.length && k>node.keys[i]) i++;
+        if(i<node.keys.length && node.keys[i]===k) return {node,idx:i};
+        if(node.leaf) return null;
         return this.searchNode(node.children[i],k);
     }
-    search(k){
-        if (!this.root) return null;
-        return this.searchNode(this.root,k);
-    }
-
+    search(k){ return this.root?this.searchNode(this.root,k):null; }
     insert(k){
-        if (this.search(k)) return;
+        if(this.search(k)) return;
         let r=this.root;
-        if (r.keys.length===2*this.t-1){
-            let s=new BTreeNode(this.t,false);
+        if(r.keys.length===this.m-1){
+            let s=new BTreeNode(this.m,false);
             s.children.push(r);
             this.splitChild(s,0,r);
             let i=0;
-            if (s.keys[0]<k) i++;
+            if(s.keys[0]<k) i++;
             this.insertNonFull(s.children[i],k);
             this.root=s;
-        } else {
-            this.insertNonFull(r,k);
-        }
+        } else this.insertNonFull(r,k);
     }
     insertNonFull(node,k){
-        if (node.leaf){
+        if(node.leaf){
             node.keys.push(k);
             node.keys.sort((a,b)=>a-b);
         } else {
             let i=node.keys.length-1;
             while(i>=0 && k<node.keys[i]) i--;
             i++;
-            if (node.children[i].keys.length===2*this.t-1){
+            if(node.children[i].keys.length===this.m-1){
                 this.splitChild(node,i,node.children[i]);
-                if (k>node.keys[i]) i++;
+                if(k>node.keys[i]) i++;
             }
             this.insertNonFull(node.children[i],k);
         }
     }
     splitChild(parent,i,y){
-        const t=y.t;
-        const z=new BTreeNode(t,y.leaf);
-        z.keys=y.keys.splice(t);
-        const mid=y.keys.pop();
-        if (!y.leaf) z.children=y.children.splice(t);
+        const m=y.m;
+        const mid=Math.floor((m-1)/2);
+        const z=new BTreeNode(m,y.leaf);
+        z.keys=y.keys.splice(mid+1);
+        const midKey=y.keys.pop();
+        if(!y.leaf) z.children=y.children.splice(mid+1);
         parent.children.splice(i+1,0,z);
-        parent.keys.splice(i,0,mid);
+        parent.keys.splice(i,0,midKey);
     }
-
     remove(k){
-        if (!this.root) return;
+        if(!this.root) return;
         this.root.remove(k);
-        if (this.root.keys.length===0){
-            if (this.root.leaf) this.root=null;
+        if(this.root.keys.length===0){
+            if(this.root.leaf) this.root=null;
             else this.root=this.root.children[0];
         }
     }
 }
+
 function collectByLevel(root){
-    if (!root) return [];
-    const levels=[];
-    const q=[{node:root,level:0}];
+    if(!root) return [];
+    const levels=[],q=[{node:root,level:0}];
     while(q.length){
         const {node,level}=q.shift();
-        if (!levels[level]) levels[level]=[];
+        if(!levels[level]) levels[level]=[];
         levels[level].push(node);
-        if (!node.leaf){
-            node.children.forEach(child=>q.push({node:child,level:level+1}));
-        }
+        if(!node.leaf) node.children.forEach(c=>q.push({node:c,level:level+1}));
     }
     return levels;
 }
 function createSVGOverlay(container){
-    const old=container.querySelector("svg.bt-lines");
-    if (old) old.remove();
+    const old=container.querySelector("svg.bt-lines"); if(old) old.remove();
     const svg=document.createElementNS("http://www.w3.org/2000/svg","svg");
     svg.setAttribute("class","bt-lines");
-    svg.style.position="absolute";
-    svg.style.top="0";svg.style.left="0";
-    svg.style.width="100%";svg.style.height="100%";
-    svg.style.pointerEvents="none";
-    container.appendChild(svg);
-    return svg;
+    svg.style.position="absolute"; svg.style.top="0"; svg.style.left="0";
+    svg.style.width="100%"; svg.style.height="100%"; svg.style.pointerEvents="none";
+    container.appendChild(svg); return svg;
 }
 function drawTreeWithLines(){
     const treeDiv=document.getElementById("tree");
-    treeDiv.innerHTML="";
-    treeDiv.style.position="relative";
-    treeDiv.style.minHeight="160px";
-    treeDiv.style.overflow="visible";
-    if (!tree || !tree.root){
-        treeDiv.innerHTML="<p style='color:red;font-size:22px;'>Tree is empty</p>";
-        return;
-    }
+    treeDiv.innerHTML=""; treeDiv.style.position="relative"; treeDiv.style.minHeight="160px";
+    if(!tree||!tree.root){ treeDiv.innerHTML="<p style='color:red;font-size:22px;'>Tree is empty</p>"; return; }
     const padding=20,width=Math.max(treeDiv.clientWidth,800),levelGap=110;
     const levels=collectByLevel(tree.root);
     const wrapper=document.createElement("div");
-    wrapper.style.position="relative";
-    wrapper.style.width="100%";
-    wrapper.style.minHeight=(levels.length*levelGap+60)+"px";
-    wrapper.style.padding=padding+"px";
+    wrapper.style.position="relative"; wrapper.style.width="100%";
+    wrapper.style.minHeight=(levels.length*levelGap+60)+"px"; wrapper.style.padding=padding+"px";
     treeDiv.appendChild(wrapper);
     const nodeElements=new Map();
     levels.forEach((nodes,lvl)=>{
         const n=nodes.length;
         for(let i=0;i<n;i++){
-            const node=nodes[i];
-            const x=((i+1)*(width/(n+1)));
-            const y=lvl*levelGap+10;
+            const node=nodes[i]; const x=((i+1)*(width/(n+1))); const y=lvl*levelGap+10;
             const box=document.createElement("div");
             box.classList.add("bt-node-box");
-            box.style.position="absolute";
-            box.style.left=(x-60)+"px";
-            box.style.top=y+"px";
-            box.style.minWidth="120px";
-            box.style.padding="8px 10px";
-            box.style.textAlign="center";
-            box.style.border="2px solid lime";
-            box.style.borderRadius="8px";
-            box.style.background="black";
-            box.style.color="cyan";
-            box.style.fontWeight="600";
+            box.style.position="absolute"; box.style.left=(x-60)+"px"; box.style.top=y+"px";
+            box.style.minWidth="120px"; box.style.padding="8px 10px"; box.style.textAlign="center";
+            box.style.border="2px solid lime"; box.style.borderRadius="8px";
+            box.style.background="black"; box.style.color="cyan"; box.style.fontWeight="600";
             box.style.boxShadow="0 2px 6px rgba(0,0,0,0.6)";
             box.innerText=node.keys.length?node.keys.join(" | "):"∅";
-            wrapper.appendChild(box);
-            nodeElements.set(node.id,box);
+            wrapper.appendChild(box); nodeElements.set(node.id,box);
         }
     });
     const svg=createSVGOverlay(wrapper);
     function centerOf(el){
-        const r=el.getBoundingClientRect();
-        const parentR=wrapper.getBoundingClientRect();
-        const cx=(r.left-parentR.left)+r.width/2;
-        const cy=(r.top-parentR.top)+r.height/2;
-        return {x:cx,y:cy};
+        const r=el.getBoundingClientRect(),parentR=wrapper.getBoundingClientRect();
+        return {x:(r.left-parentR.left)+r.width/2, y:(r.top-parentR.top)+r.height/2};
     }
     for(let lvl=0;lvl<levels.length-1;lvl++){
         const parents=levels[lvl];
         parents.forEach(parentNode=>{
-            const parentEl=nodeElements.get(parentNode.id);
-            if (!parentEl) return;
+            const parentEl=nodeElements.get(parentNode.id); if(!parentEl) return;
             const pCenter=centerOf(parentEl);
             (parentNode.children||[]).forEach(childNode=>{
-                const childEl=nodeElements.get(childNode.id);
-                if (!childEl) return;
+                const childEl=nodeElements.get(childNode.id); if(!childEl) return;
                 const cCenter=centerOf(childEl);
                 const line=document.createElementNS("http://www.w3.org/2000/svg","line");
-                line.setAttribute("x1",pCenter.x);
-                line.setAttribute("y1",pCenter.y+parentEl.offsetHeight/2-6);
-                line.setAttribute("x2",cCenter.x);
-                line.setAttribute("y2",cCenter.y-childEl.offsetHeight/2+6);
-                line.setAttribute("stroke","lime");
-                line.setAttribute("stroke-width","2");
-                svg.appendChild(line);
+                line.setAttribute("x1",pCenter.x); line.setAttribute("y1",pCenter.y+parentEl.offsetHeight/2-6);
+                line.setAttribute("x2",cCenter.x); line.setAttribute("y2",cCenter.y-childEl.offsetHeight/2+6);
+                line.setAttribute("stroke","lime"); line.setAttribute("stroke-width","2"); svg.appendChild(line);
             });
         });
     }
 }
 let tree=null;
-function showError(msg){alert(msg);}
+function showError(msg){ alert(msg); }
 
 function ins(){
     music && music.play();
     const orderEl=document.getElementById("order");
-    const order=parseInt(orderEl.value);
-    if (isNaN(order)||order<2){
-        showError("Please enter a valid B-Tree order (>=2) before inserting.");
-        return;
-    }
-    if (!tree) tree=new BTree(order);
+    const m=parseInt(orderEl.value);
+        if(isNaN(m)||m<2){ showError("Please enter a valid B-Tree ORDER (>=2)."); return; }
+    if(!tree) tree=new BTree(m);
     const v=document.getElementById("insert").value.trim();
-    if (v===""||isNaN(v)){
-        showError("Please enter an integer to insert.");
-        return;
-    }
-    const val=parseInt(v);
-    tree.insert(val);
-    document.getElementById("insert").value="";
-    drawTreeWithLines();
+    if(v===""||isNaN(v)){ showError("Please enter an integer to insert."); return; }
+    const val=parseInt(v); tree.insert(val);
+    document.getElementById("insert").value=""; drawTreeWithLines();
 }
 function del(){
     music && music.play();
-    if (!tree){showError("No tree exists.");return;}
+    if(!tree){ showError("No tree exists."); return; }
     const v=document.getElementById("delete").value.trim();
-    if (v===""||isNaN(v)){showError("Please enter an integer to delete.");return;}
-    const val=parseInt(v);
-    tree.remove(val);
-    document.getElementById("delete").value="";
-    drawTreeWithLines();
+    if(v===""||isNaN(v)){ showError("Please enter an integer to delete."); return; }
+    const val=parseInt(v); tree.remove(val);
+    document.getElementById("delete").value=""; drawTreeWithLines();
 }
-async function save() {
+async function save(){
     music.play();
-    let filename = document.querySelector("#filename").value.trim();
-    if (!filename) {
-        filename = "btree";
-    }
-    const treeDiv = document.getElementById("tree");
-    const canvas = await html2canvas(treeDiv, {backgroundColor: null});
-    const imgData = canvas.toDataURL("image/png");
-    const { jsPDF } = window.jspdf;
-    const pdf = new jsPDF({
-        orientation: "landscape",
-        unit: "pt",
-        format: "a4"
-    });
+    let filename=document.querySelector("#filename").value.trim();
+    if(!filename) filename="btree";
+    const treeDiv=document.getElementById("tree");
+    const canvas=await html2canvas(treeDiv,{backgroundColor:null});
+    const imgData=canvas.toDataURL("image/png");
+    const {jsPDF}=window.jspdf;
+    const pdf=new jsPDF({orientation:"landscape",unit:"pt",format:"a4"});
     pdf.setFillColor(0,0,0);
     pdf.rect(0,0,pdf.internal.pageSize.getWidth(),pdf.internal.pageSize.getHeight(),"F");
-    const pageWidth = pdf.internal.pageSize.getWidth();
-    const pageHeight = pdf.internal.pageSize.getHeight();
-    const imgWidth = canvas.width * 0.7;
-    const imgHeight = canvas.height * 0.7;
-    const x = (pageWidth - imgWidth) / 2;
-    const y = (pageHeight - imgHeight) / 2;
-
-    pdf.addImage(imgData, "PNG", x, y, imgWidth, imgHeight);
-    pdf.save(filename + ".pdf");
+    const pageWidth=pdf.internal.pageSize.getWidth();
+    const pageHeight=pdf.internal.pageSize.getHeight();
+    const imgWidth=canvas.width*0.7;
+    const imgHeight=canvas.height*0.7;
+    const x=(pageWidth-imgWidth)/2, y=(pageHeight-imgHeight)/2;
+    pdf.addImage(imgData,"PNG",x,y,imgWidth,imgHeight); pdf.save(filename+".pdf");
 }
 let resizeTimer;
-window.addEventListener("resize",()=>{
-    clearTimeout(resizeTimer);
-    resizeTimer=setTimeout(()=>{
-        if(tree) drawTreeWithLines();
-    },150);
-});
+window.addEventListener("resize",()=>{ clearTimeout(resizeTimer); resizeTimer=setTimeout(()=>{ if(tree) drawTreeWithLines(); },150); });
 </script>
 </body>
 </html>
